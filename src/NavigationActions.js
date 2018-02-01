@@ -1,6 +1,7 @@
 const BACK = 'Navigation/BACK';
 const INIT = 'Navigation/INIT';
 const NAVIGATE = 'Navigation/NAVIGATE';
+const PUSH = 'Navigation/PUSH';
 const RESET = 'Navigation/RESET';
 const SET_PARAMS = 'Navigation/SET_PARAMS';
 const URI = 'Navigation/URI';
@@ -39,6 +40,20 @@ const navigate = createAction(NAVIGATE, payload => {
   }
   if (payload.key) {
     action.key = payload.key;
+  }
+  return action;
+});
+
+const push = createAction(PUSH, payload => {
+  const action = {
+    type: PUSH,
+    routeName: payload.routeName,
+  };
+  if (payload.params) {
+    action.params = payload.params;
+  }
+  if (payload.action) {
+    action.action = payload.action;
   }
   return action;
 });
@@ -123,6 +138,7 @@ export default {
   BACK,
   INIT,
   NAVIGATE,
+  PUSH,
   RESET,
   SET_PARAMS,
   URI,
@@ -132,6 +148,7 @@ export default {
   back,
   init,
   navigate,
+  push,
   reset,
   setParams,
   uri,
